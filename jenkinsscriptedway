@@ -1,0 +1,23 @@
+node{
+    def mavenHome = tool name: "maven 3.8.6"
+  properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: '']])
+    echo "The build NUMBER is:${env.BUILD_NUMBER}"
+    echo "The job name is :${env.JOB_NAME}"
+    stage('CheckoutCode'){
+git branch: 'development', credentialsId: '0414987a-3353-4494-a8bc-cf68f44b45c8', url: 'https://github.com/bhagyaorg/maven-web-application.git'
+    }
+    stage('build'){
+      sh "${mavenHome}/bin/mvn clean package"  
+    }
+   // stage('uploadreporttoSonarqube'){
+     //   sh "${mavenHome}/bin/mvn sonar:sonar"
+    //}
+    stage('uploadtonexusrepository'){
+        sh "${mavenHome}/bin/mvn deploy"
+    }
+    stage('deploytoTomcatServer'){
+        sshagent(['01462336-58f3-408d-a2a6-5ea93e60a781']) {
+             sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.109.185.215:/opt/apache-tomcat-9.0.64/webapps/"
+    }
+}
+}

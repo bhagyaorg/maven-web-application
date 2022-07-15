@@ -23,6 +23,8 @@ git branch: 'development', credentialsId: '0414987a-3353-4494-a8bc-cf68f44b45c8'
 }
 }
 */
+
+
 node
 {
     
@@ -57,15 +59,13 @@ sh "${mavenHome}/bin/mvn deploy"
 }
 
 stage('DeployAppIntoTomcatServer'){
- sshagent(['01462336-58f3-408d-a2a6-5ea93e60a781']) {
+sshagent(['01462336-58f3-408d-a2a6-5ea93e60a781']) {
              sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.109.185.215:/opt/apache-tomcat-9.0.64/webapps/"
 }
 }
 
-}
-
 */
-
+}
 catch(e){
 currentBuild.result = "FAILURE"
 throw e
@@ -100,4 +100,3 @@ def slacknotifications(String buildStatus = 'STARTED') {
 
   // Send notifications
   slackSend (color: colorCode, message: summary)
-}

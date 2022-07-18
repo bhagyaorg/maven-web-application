@@ -25,7 +25,7 @@ git branch: 'development', credentialsId: '0414987a-3353-4494-a8bc-cf68f44b45c8'
 */
 
 
-node('nodes')
+node
 {
     
  def mavenHome = tool name: "maven 3.8.6"
@@ -98,6 +98,6 @@ def slacknotifications(String buildStatus = 'STARTED') {
     colorCode = '#FF0000'
   }
 
-}
+
   // Send notifications
   slackSend (color: colorCode, message: summary)

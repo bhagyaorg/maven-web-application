@@ -72,13 +72,10 @@ throw e
 finally{
 slacknotifications(currentBuild.result)
 }
-
 }// Node Closing
 
 def slacknotifications(String buildStatus = 'STARTED') {
- 
-  buildStatus =  buildStatus ?: 'SUCCESS'
-
+   buildStatus =  buildStatus ?: 'SUCCESS'
   // Default values
   def colorName = 'RED'
   def colorCode = '#FF0000'
@@ -98,5 +95,5 @@ def slacknotifications(String buildStatus = 'STARTED') {
   }
 }
   // Send notifications
-  slackSend (color: colorCode, message: summary)
+  slackSend(color: colorCode, message: summary)
   }

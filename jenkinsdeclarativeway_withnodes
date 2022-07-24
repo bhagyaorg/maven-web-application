@@ -1,7 +1,7 @@
 pipeline{
    
     agent{
-    label "nodes"
+    label "nodes"// nodes is a label which i configured while creating node
     }
     //for parameterised project do it in declarative directive generator
   parameters {

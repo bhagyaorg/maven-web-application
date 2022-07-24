@@ -25,7 +25,7 @@ git branch: 'development', credentialsId: '0414987a-3353-4494-a8bc-cf68f44b45c8'
 */
 
 
-node('nodes')
+node('nodes')//nodes is a label, i configured while creating node
 {
      def mavenHome = tool name: "maven 3.8.6"
   properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])

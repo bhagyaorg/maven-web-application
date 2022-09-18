@@ -36,7 +36,7 @@ out.println("Server Host Name :: "+inetAddress.getHostName());
 	<span style="font-weight: bold;">
 		Mithun Technologies, 
 		MarthaHalli, Above ICICI Bank, Beside Meghana Foods,
-		Bangalore,Karnataka-India
+		Bangalore,Karnataka
 		+91-9980923226
 		devopstrainingblr@gmail.com
 		<br>
